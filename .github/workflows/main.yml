@@ -1,0 +1,17 @@
+name: Sync Fork
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # 每天凌晨 0 点自动检查并同步
+  workflow_dispatch: # 允许你手动点击按钮触发同步
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: tgymrit/upstream-sync@v1.8
+        with:
+          upstream_repository: huangxd-/danmu_api
+          upstream_branch: main
+          target_branch: main
+          force_update: true
